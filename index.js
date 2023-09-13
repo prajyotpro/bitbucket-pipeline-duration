@@ -4,7 +4,8 @@ import { program } from 'commander';
 
 program
     .requiredOption('-w, --workspace <string>', "Bitbucket workspace slug.")
-    .requiredOption('-t, --token <string>', "Bitbucket Basic Auth Token: https://developer.atlassian.com/server/bitbucket/how-tos/example-basic-authentication/");
+    .requiredOption('-t, --token <string>', "Bitbucket Basic Auth Token: https://developer.atlassian.com/server/bitbucket/how-tos/example-basic-authentication/")
+    .option('-d, --days <number>', "Duration in days.");
 
 program.parse();
 const cliOptions = program.opts();
@@ -99,9 +100,11 @@ function addBuildSecondsUsed(buildValues, priorDate) {
 
 async function calculateBuildDurationByProject(projectName) {
 
+    const days = cliOptions.days ? cliOptions.days : 31;
+
     try {
         const today = new Date();
-        const priorDate = new Date(new Date().setDate(today.getDate() - 31));
+        const priorDate = new Date(new Date().setDate(today.getDate() - days));
         let totalBuildDurationInSec = 0;
 
         const result = await getBuildsByProject(projectName);
