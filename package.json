@@ -1,0 +1,15 @@
+{
+  "name": "bitbucket-pipeline-duration",
+  "version": "1.0.0",
+  "description": "The project focuses on providing functionality to calculate total pipeline minutes per project in a given time.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Prajyot Khandeparkar",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^11.0.0"
+  }
+}
